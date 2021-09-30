@@ -48,7 +48,7 @@
     optCloudClassCount = '5',
     optCloudClassPrefix = 'tag-size-';
 
-  function generateTitleLinks(ustomSelector = ''){
+  function generateTitleLinks(customSelector = ''){
     const titleList = document.querySelector(optTitleListSelector);
     titleList.innerHTML = '';
   }
