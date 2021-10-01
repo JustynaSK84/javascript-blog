@@ -5,6 +5,7 @@ const templates = {
   articleAuthor: Handlebars.compile(document.querySelector('#template-article-author').innerHTML),
   authorCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML),
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
+  articleTag: Handlebars.compile(document.querySelector('#template-article-tag').innerHTML),
 }
   const titleClickHandler = function(event){
     event.preventDefault();
@@ -193,7 +194,7 @@ generateAuthors();
 
 function authorClickHandler(event){
   event.preventDefault();
-  const clickedElement = this,
+    const clickedElement = this,
     href = clickedElement.getAttribute('href'),
     author = href.replace('#author-', ''),
     activeAuthors = document.querySelectorAll('a.active[href^="#author-"]');
@@ -218,9 +219,36 @@ function addClickListenersToAuthors(){
 }
 addClickListenersToAuthors();
 
-function calculateTagClass(){};
-function calculateAuthorsParams(){};
-function calculateTagsParams () {};
+function calculateTagClass(count, params){
+  const normalizedCount = count - params.min,
+      normalizedMax = params.max - params.min,
+      percentage = normalizedCount / normalizedMax,
+      classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+    return optCloudClassPrefix + classNumber;
+  }
+
+function calculateAuthorsParams(authors){
+  let max = 0, min = 99999, authorsParams = {min, max};
+  console.log(calculateTagsParams);
+
+  for (let author in authors) {
+    authorsParams.max = Math.max(authors[author], authorsParams.max);
+    authorsParams.min = Math.min(authors[author], authorsParams.min);
+  }
+  return authorsParams;
+}
+
+function calculateTagsParams (tags) {
+  let max = 0, min = 99999, tagsParams = {min, max};
+  console.log(calculateTagsParams);
+
+  for (let tag in tags) {
+      console.log(tag + ' is used ' + tags[tag] + ' times');
+      tagsParams.max = Math.max(tags[tag], tagsParams.max);
+      tagsParams.min = Math.min(tags[tag], tagsParams.min);
+    }
+    return tagsParams;
+  }
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
@@ -237,7 +265,7 @@ function generateTags(){
     const articleTags = article.getAttribute('data-tags');
     console.log(articleTags);
     /* split tags into array */
-     const articleTagsArray = articleTags.split(' ');
+    const articleTagsArray = articleTags.split(' ');
     /* START LOOP: for each tag */
     for(let tag of articleTagsArray){
       /*generate HTML of the link */
