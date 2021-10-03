@@ -72,6 +72,8 @@ body {
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  color: #03615c;
+  text-shadow: 2px 2px #38ada9;
 }
 
 /* Lists */
@@ -117,4 +119,28 @@ body {
   p {
     margin: 0 10px 0 0;
   }
+}
+.tag-size-1 {
+  font-size: 20px;
+  color: #ffda79;
+}
+
+.tag-size-2 {
+  font-size: 25px;
+  color: #78e08f;
+}
+
+.tag-size-3 {
+  font-size: 30px;
+  color: #38ada9;
+}
+
+.tag-size-4 {
+  font-size: 35px;
+  color: #079992;
+}
+
+.tag-size-5 {
+  font-size: 40px;
+  color: #03615c;
 }
