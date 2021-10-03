@@ -29,7 +29,7 @@ const templates = {
 
     const articleSelector = clickedElement.getAttribute('href');
     console.log ('href', articleSelector);
-    const targetArticle = document.querySelectorAll(articleSelector);
+    const targetArticle = document.querySelector(articleSelector);
 
     targetArticle.classList.add('active');
 
