@@ -91,8 +91,8 @@ const templates = {
       /* START LOOP: for each tag */
       for(let tag of articleTagsArray){
         /*generate HTML of the link */
-        const linkHTMLData = {id: articleTags , title: tag };
-        const linkHTML = templates.articleLink(linkHTMLData);
+        const linkHTMLData = { tag: tag };
+        const linkHTML = templates.articleTag(linkHTMLData);
 
         console.log(linkHTML);
         /* add generated code to html variable */
